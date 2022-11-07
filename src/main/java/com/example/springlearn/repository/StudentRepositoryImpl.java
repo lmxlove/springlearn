@@ -26,6 +26,18 @@ public class StudentRepositoryImpl implements  StudentRepository{
   public Student findById(long id) {
     return studentMap.get(id);
   }
+  @Override
+  public Boolean getType(Long id){
+    String type=id.getClass().toString();
+    System.out.println(type);
+    type=type.substring(type.lastIndexOf('.')+1,type.length());
+    if("Long".equals(type)){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
 
   @Override
   public void saveOrUpdate(Student student) {

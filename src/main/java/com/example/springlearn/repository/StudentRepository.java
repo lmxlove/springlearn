@@ -11,7 +11,12 @@ import java.util.Collection;
 public interface StudentRepository {
   Collection<Student> findAll();
   Student findById(long id);
+
+  Boolean getType(Long id);
+
   void saveOrUpdate(Student student);
   void deleteById(long id);
+
+
 
 }
