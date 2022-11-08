@@ -1,6 +1,7 @@
 package com.example.springlearn.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.springlearn.entiry.com.Student;
+import com.example.springlearn.exception.UrlGetException;
 import com.example.springlearn.repository.StudentRepository;
 //import  com.example.springlearn.repository.StudentRepositoryImpl;
 
@@ -40,8 +41,9 @@ public class StudentHandler {
   @ResponseBody
   //当方法参数名称和需要绑定的url中变量名称一致时，可以简写去掉(“id”)
 
-  public Student findById(@PathVariable("id") Long id) throws Exception {
+  public Student findById(@PathVariable("id") Long id)  {
     //判断用户输入的id是不是long型
+    log.info("接收参数:{}", JSONObject.toJSONString(id));
     Boolean res=studentRepository.getType(id);
     if(res){
       System.out.println("是long型");
@@ -58,11 +60,10 @@ public class StudentHandler {
 //        return false;
 //      }
 //    }
-    log.info("接收参数:{}", JSONObject.toJSONString(id));
+
     Integer arguments=2;
     if(id>arguments){
-      Exception RuntimeException = null;
-      throw   RuntimeException;
+      throw new UrlGetException(404,"该用户不存在");
     }
 //    log.info("接收参数:{}", toJSONString(id));
 
