@@ -1,7 +1,4 @@
 package com.example.springlearn.util;
-
-
-
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

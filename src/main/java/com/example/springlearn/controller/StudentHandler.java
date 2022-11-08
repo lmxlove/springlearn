@@ -8,10 +8,10 @@ import com.example.springlearn.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
+
 import java.util.Collection;
 
 /**
@@ -24,6 +24,10 @@ import java.util.Collection;
 public class StudentHandler {
   @Autowired
   private StudentRepository studentRepository;
+  /**三种依赖注入方式，属性注入(@Autowired)，
+   * set方法注入，构造方法注入
+   * 还有一种@resoure
+   */
   private final Logger log = LoggerFactory.getLogger(StudentHandler.class);
 
 
@@ -32,10 +36,6 @@ public class StudentHandler {
   public Collection<Student> findAll() {
     return studentRepository.findAll();
   }
-//  @GetMapping("/error")
-//  public  String toDo(){
-//    return ";该接口被spring自带的安全框架保护，你已成功登录，可以使用接口";
-//  }
 
   @GetMapping("/findById/{id}")
   @ResponseBody
@@ -50,36 +50,24 @@ public class StudentHandler {
     }else{
       System.out.println("不是long型");
     }
-//    public static  Boolean getType(Object o){
-//      String type=o.getClass().toString();
-//      System.out.println(type);
-//      type=type.substring(type.lastIndexOf('.')+1,type.length());
-//      if("Long".equals(type)){
-//        return ture;
-//      }else{
-//        return false;
-//      }
-//    }
+
 
     Integer arguments=2;
     if(id>arguments){
       throw new UrlGetException(404,"该用户不存在");
     }
-//    log.info("接收参数:{}", toJSONString(id));
+
 
     return studentRepository.findById(id);
   }
 
-//  private String toJSONString(Long id) {
-//    id.toString();
-//    System.out.println(id);
-//    return id.toString();
-//  }
+
 
   @PostMapping("/save")
   @ResponseBody
-  // 因为前端会以JSON数据返回，所以要用 @RequestBody
+
   public void save(@RequestBody Student student) {
+    // 因为前端会以JSON数据返回，所以要用 @RequestBody
     studentRepository.saveOrUpdate(student);
   }
 

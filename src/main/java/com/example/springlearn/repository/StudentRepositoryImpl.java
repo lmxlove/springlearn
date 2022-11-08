@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author 我不是大佬
+ */
 @Repository
 public class StudentRepositoryImpl implements  StudentRepository{
   private static Map<Long,Student> studentMap;
@@ -31,11 +34,7 @@ public class StudentRepositoryImpl implements  StudentRepository{
     String type=id.getClass().toString();
     System.out.println(type);
     type=type.substring(type.lastIndexOf('.')+1,type.length());
-    if("Long".equals(type)){
-      return true;
-    }else{
-      return false;
-    }
+    return "Long".equals(type);
 
   }
 

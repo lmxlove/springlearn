@@ -9,7 +9,14 @@ import java.util.Collection;
  * @since 2022/11/4 22:01
  */
 public interface StudentRepository {
+  /**
+   *
+   *
+   */
   Collection<Student> findAll();
+  /**
+   *
+  * */
   Student findById(long id);
 
   Boolean getType(Long id);

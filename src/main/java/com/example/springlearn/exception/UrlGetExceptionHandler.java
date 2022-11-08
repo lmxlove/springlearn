@@ -19,11 +19,12 @@ public class UrlGetExceptionHandler {
   public JsonData handle(Exception e){
     if(e instanceof UrlGetException){
       UrlGetException urlGetException = (UrlGetException) e;
-      log.error("[业务异常{}]",e);
+      //使用log.error打印异常， 不需要占位符，使用log.info打印日志，需要占位符
+      log.error("业务异常",e);
       System.out.println("具体异常信息1 "+e);
       return JsonData.buildCodeAndMsg(urlGetException.getCode(),urlGetException.getMessage());
     }else{
-      log.error("[系统异常{}]",e);
+      log.error("系统异常",e);
       System.out.println("具体异常信息2 "+e);
 
       return JsonData.buildError(e.getMessage());
